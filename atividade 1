@@ -1,7 +1,16 @@
 a um cliente é atribuido uma fatura  1-1
-uma fatura contem muitos produtos  1-n
+uma fatura contem varios produtos  1-n
 muitos produtos têm muitos funcionarios  n-n
 
-um funcionario gere muitos produtos 1-n
-muitos produtos têm uma fatura n-1
-uma fatura é atribuida a um cliente 1-1
+correção 
+cliente -- funcionario
+um cliente pode ter varias faturas  1-n
+uma fatura pertence a 1 cliente 1-1
+
+funcionario -- cliente
+varios funcioarios têm varios clientes n-n
+um funcionario tem varios clientes 1-n
+produtos -- faturas
+
+varios produtos pertencem a uma fatura n-1
+varios produtos presentes em varias faturas n-n
