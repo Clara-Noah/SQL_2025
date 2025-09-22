@@ -1,3 +1,3 @@
-um cliente tem uma fatura
-uma fatura tem muitos produtos
-muitos prdutos têm um funcionario/cliente
+um cliente tem uma fatura  1-1
+uma fatura tem muitos produtos  1-n
+muitos prdutos têm muitos funcionarios  n-n
