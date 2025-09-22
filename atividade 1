@@ -1,0 +1,7 @@
+a um cliente é atribuido uma fatura  1-1
+uma fatura contem muitos produtos  1-n
+muitos produtos têm muitos funcionarios  n-n
+
+um funcionario gere muitos produtos 1-n
+muitos produtos têm uma fatura n-1
+uma fatura é atribuida a um cliente 1-1
