@@ -1,0 +1,24 @@
+Alunos
+       -numero de aluno (PK)
+       -nome
+       -idade
+       -morada
+
+Professores
+           -nome
+           -disciplina
+           -id do professor(PK)
+           -idade
+           -email
+
+Funcionarios
+            -idade
+            -nome
+            -id do funcionario(PK)
+            -tarefa
+            -email
+
+Cursos
+      -turmas
+      -nome do curso(PK)
+      -diretor do curso
