@@ -1,0 +1,25 @@
+alunos
+-id_aluno (PK)
+-nome
+-data_nascimento
+-morada
+-id_ curso (FK)
+
+Funcionarios
+-id_funcionarios (PK)
+-nome
+-departamento
+-telefone (CK)
+
+Professor
+-id_professor (PK)
+-nome
+-especialidade
+-telefone (CK)
+-email (CK)
+-id_funcionario (FK)
+
+Cursos
+-id_curso (PK)
+-nome
+-carga_horaria
