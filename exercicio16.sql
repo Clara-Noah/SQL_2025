@@ -4,10 +4,10 @@ USE armazenamento;
 
 CREATE TABLE produtos (
 produtoID INT PRIMARY KEY,
-COD_PROD  INT NOT NULL,
-VALOR_UNIT FLOAT NOT NULL,
-QUANTIDADE INT NOT NULL,
-DESCONTO INT
+cod_prod  INT NOT NULL,
+valor_unit FLOAT NOT NULL,
+quantidade INT NOT NULL,
+desconto INT
 );
 
 SELECT * FROM produtos
