@@ -4,7 +4,7 @@ USE armazenamento;
 CREATE TABLE produtos (
 produtoID INT PRIMARY KEY,
 cod_prod  INT NOT NULL,
-valor_unit FLOAT NOT NULL,
+valor_unit DECIMAL(10,2) NOT NULL,
 quantidade INT NOT NULL,
 desconto INT
 );
@@ -24,4 +24,15 @@ VALUES
 (11, 3, 15.00, 10, 4),
 (12, 5, 30.00, 10, 1);
 
-SELECT * FROM produtos
+SELECT * FROM produtos;
+-- 1
+SELECT cod_prod, valor_unit FROM produtos WHERE desconto is null;
+-- 2
+UPDATE produtos
+SET desconto = 0
+where desconto is NULL;
+-- 3
+SELECT produtoID, quantidade FROM produtos WHERE desconto > 10 AND desconto < 20;
+-- 4
+SELECT quantidade, valor_unit FROM produtos WHERE cod_prod = 2
+
