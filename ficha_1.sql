@@ -32,17 +32,27 @@ VALUES
 
 UPDATE costumers
 SET contactname = 912000321,
+    region = "novo_mexico",
+    country = "estados_unidos"
+    WHERE costumerID = 1;
+    
+UPDATE costumers
+SET contactname = 912120321,
     region = "paris",
     country = "frança"
-    WHERE costumerID = 1;
--- estavamos a corrigir este erro no final da aula de segunda-feira e não acabados de corrigir nessa aula
--- eu faltei na quarta, o ultimo dia para fazer
--- desculpe por ficar a meio
-
-(912000321, "paris", "frança"),
-(912120321, "novo_mexico", "estados_unidos"),
-(912005521, "cidade_do_mexico", "mexico"),
-(912075321, "lisboa", "portugal");
+    WHERE costumerID = 2;
+    
+UPDATE costumers
+SET contactname = 912005521,
+    region = "lisboa",
+    country = "portugal"
+    WHERE costumerID = 3;
+    
+    UPDATE costumers
+SET contactname = 912075321,
+    region = "rio_de_janeiro",
+    country = "brasil"
+    WHERE costumerID = 4;
 
 
 -- 2.1 pessoas que são do mexico
@@ -56,10 +66,44 @@ FROM costumers
 ORDER BY region ASC;
 
 -- 3
-CREATE TABLE armazenamento
-(products VARCHAR(20),
-categoryID INT,
+CREATE TABLE produtos
+(categoryID INT,
 productID INT PRIMARY KEY,
 productsname VARCHAR(20),
-
+suplierID INT,
+unitinstock INT
 );
+
+INSERT INTO produtos
+VALUES 
+(1,1010,"banana",100,3115),
+(2,1011,"pera",101,2005),
+(3,1012,"ananas",108,3165),
+(4,1013,"cebola",98,3406);
+
+SELECT productsname FROM produtos
+WHERE categoryID = 1 AND unitinstock > 0;
+
+SELECT* FROM produtos
+ORDER BY unitinstock DESC;
+
+-- exercicio 4
+
+CREATE TABLE encomendas
+(orderID INT PRIMARY KEY,
+quantity INT,
+productID INT,
+FOREIGN KEY(productID) REFERENCES produtos(productID)
+);
+
+INSERT INTO encomendas
+VALUES
+(10, 200, 1010),
+(21, 100, 1011),
+(5, 150, 1012);
+
+SELECT productID, quantity 
+FROM encomendas
+where orderID IN (10, 21, 5);
+
+
