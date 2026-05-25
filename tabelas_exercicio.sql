@@ -54,4 +54,88 @@ VALUES
 (600, 6, '2000-03-15'),
 (500, 4, '2000-08-20');
 
-SELECT * from reservas;
+-- 1. Encontre os marinheiros que reservaram o barco 100.
+SELECT m.*
+FROM marinheiro m
+JOIN reservas r ON m.num_marinheiro = r.num_marinheiro
+WHERE r.num_barco = 100;
+
+
+-- 2. Encontre os nomes dos marinheiros que reservaram um barco vermelho.
+SELECT DISTINCT m.nome_marinheiro
+FROM marinheiro m
+JOIN reservas r ON m.num_marinheiro = r.num_marinheiro
+JOIN barco b ON r.num_barco = b.num_barco
+WHERE b.cor = 'vermelho';
+
+
+-- 3. Encontre as cores dos barcos reservados pelo Manuel.
+SELECT DISTINCT b.cor
+FROM barco b
+JOIN reservas r ON b.num_barco = r.num_barco
+JOIN marinheiro m ON r.num_marinheiro = m.num_marinheiro
+WHERE m.nome_marinheiro = 'manuel';
+
+
+-- 4. Encontre os nomes dos marinheiros que reservaram pelo menos um barco.
+SELECT DISTINCT m.nome_marinheiro
+FROM marinheiro m
+JOIN reservas r ON m.num_marinheiro = r.num_marinheiro;
+
+
+-- 5. Encontre os nomes dos marinheiros que reservaram um barco vermelho ou verde.
+SELECT DISTINCT m.nome_marinheiro
+FROM marinheiro m
+JOIN reservas r ON m.num_marinheiro = r.num_marinheiro
+JOIN barco b ON r.num_barco = b.num_barco
+WHERE b.cor IN ('vermelho', 'verde');
+
+
+-- 6. Encontre os nomes dos marinheiros que reservaram um barco vermelho e verde.
+SELECT m.nome_marinheiro
+FROM marinheiro m
+JOIN reservas r ON m.num_marinheiro = r.num_marinheiro
+JOIN barco b ON r.num_barco = b.num_barco
+WHERE b.cor IN ('vermelho', 'verde')
+GROUP BY m.num_marinheiro, m.nome_marinheiro
+HAVING COUNT(DISTINCT b.cor) = 2;
+
+
+-- 7. Encontre os nomes dos marinheiros que reservaram pelo menos dois barcos.
+SELECT m.nome_marinheiro
+FROM marinheiro m
+JOIN reservas r ON m.num_marinheiro = r.num_marinheiro
+GROUP BY m.num_marinheiro, m.nome_marinheiro
+HAVING COUNT(DISTINCT r.num_barco) >= 2;
+
+
+-- 8. Encontre os num_marinheiro com idade superior a 20 anos
+--    que não tenham reservado um barco vermelho.
+SELECT m.num_marinheiro
+FROM marinheiro m
+WHERE m.idade > 20
+AND m.num_marinheiro NOT IN (
+    SELECT r.num_marinheiro
+    FROM reservas r
+    JOIN barco b ON r.num_barco = b.num_barco
+    WHERE b.cor = 'vermelho'
+);
+
+
+-- 9. Encontre os nomes dos marinheiros que reservaram todos os barcos.
+SELECT m.nome_marinheiro
+FROM marinheiro m
+JOIN reservas r ON m.num_marinheiro = r.num_marinheiro
+GROUP BY m.num_marinheiro, m.nome_marinheiro
+HAVING COUNT(DISTINCT r.num_barco) = (
+    SELECT COUNT(*)
+    FROM barco
+);
+
+
+-- 10. Encontre os nomes dos marinheiros que reservaram o barco Interlago.
+SELECT DISTINCT m.nome_marinheiro
+FROM marinheiro m
+JOIN reservas r ON m.num_marinheiro = r.num_marinheiro
+JOIN barco b ON r.num_barco = b.num_barco
+WHERE b.nome_barco = 'interlago';
